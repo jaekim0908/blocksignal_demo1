@@ -29,8 +29,7 @@ export const getEllipsisTxt = (str, n = 6) => {
   return "";
 };
 
-export const tokenValue = (value, decimals) =>
-  decimals ? value / Math.pow(10, decimals) : value;
+export const tokenValue = (value, decimals) => (decimals ? value / Math.pow(10, decimals) : value);
 
 /**
  * Return a formatted string with the symbol at the end

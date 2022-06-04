@@ -18,8 +18,14 @@ function MenuItems() {
       }}
       defaultSelectedKeys={[pathname]}
     >
-      <Menu.Item key="/quickstart">
+      {/* <Menu.Item key="/quickstart">
         <NavLink to="/quickstart">🚀 Quick Start</NavLink>
+      </Menu.Item> */}
+      <Menu.Item key="/news">
+        <NavLink to="/news">📰 News</NavLink>
+      </Menu.Item>
+      <Menu.Item key="/chat">
+        <NavLink to="/chat">🚀 Chat</NavLink>
       </Menu.Item>
       <Menu.Item key="/wallet">
         <NavLink to="/wallet">👛 Wallet</NavLink>

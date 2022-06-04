@@ -7,9 +7,7 @@ function Ramper() {
   useEffect(() => {
     if (!Moralis?.["Plugins"]?.["fiat"]) return null;
     async function initPlugin() {
-      Moralis.Plugins.fiat
-        .buy({}, { disableTriggers: true })
-        .then((data) => setRamper(data.data));
+      Moralis.Plugins.fiat.buy({}, { disableTriggers: true }).then((data) => setRamper(data.data));
     }
     initPlugin();
     // eslint-disable-next-line react-hooks/exhaustive-deps

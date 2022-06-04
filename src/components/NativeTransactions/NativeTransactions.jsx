@@ -61,9 +61,7 @@ function NativeTransactions() {
   return (
     <div>
       <h1 style={styles.title}>💸Native Transactions</h1>
-      <Skeleton
-        loading={!nativeTransactions || nativeTransactions.length === 0}
-      >
+      <Skeleton loading={!nativeTransactions || nativeTransactions.length === 0}>
         <Table
           dataSource={nativeTransactions}
           columns={columns}

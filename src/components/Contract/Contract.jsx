@@ -62,12 +62,7 @@ export default function Contract() {
             }}
           >
             Your contract: {contract?.contractName}
-            <Address
-              avatar="left"
-              copyable
-              address={contractAddress}
-              size={8}
-            />
+            <Address avatar="left" copyable address={contractAddress} size={8} />
           </div>
         }
         size="large"
@@ -87,7 +82,7 @@ export default function Contract() {
 
               let isView = false;
               /*eslint no-unsafe-optional-chaining: "error"*/
-              for (let method of contract?.abi) {
+              for (let method of contract?.abi ?? method) {
                 if (method.name !== name) continue;
                 console.log(method);
                 if (method.stateMutability === "view") isView = true;
@@ -162,12 +157,7 @@ export default function Contract() {
         }}
       >
         {data.map((event, key) => (
-          <Card
-            title={"Transfer event"}
-            size="small"
-            style={{ marginBottom: "20px" }}
-            key={key}
-          >
+          <Card title={"Transfer event"} size="small" style={{ marginBottom: "20px" }} key={key}>
             {getEllipsisTxt(event.attributes.transaction_hash, 14)}
           </Card>
         ))}

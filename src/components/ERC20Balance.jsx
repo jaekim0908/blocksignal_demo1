@@ -36,8 +36,7 @@ function ERC20Balance(props) {
       title: "Balance",
       dataIndex: "balance",
       key: "balance",
-      render: (value, item) =>
-        parseFloat(Moralis?.Units?.FromWei(value, item.decimals)).toFixed(6),
+      render: (value, item) => parseFloat(Moralis?.Units?.FromWei(value, item.decimals)).toFixed(6),
     },
     {
       title: "Address",

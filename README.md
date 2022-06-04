@@ -134,11 +134,7 @@ Supported domains: `[".eth", ".crypto", ".coin", ".wallet", ".bitcoin", ".x", ".
 ```jsx
 const [address, setAddress] = useState();
 
-<AddressInput
-  autoFocus
-  placeholder="Input your Address"
-  onChange={setAddress}
-/>;
+<AddressInput autoFocus placeholder="Input your Address" onChange={setAddress} />;
 ```
 
 ### `<Chains />`
@@ -339,16 +335,13 @@ const ShowUniswapObserveValues = () => {
 ```jsx
 import { useERC20Balances } from "react-moralis";
 
-const { fetchERC20Balances, data, isLoading, isFetching, error } =
-  useERC20Balances();
+const { fetchERC20Balances, data, isLoading, isFetching, error } = useERC20Balances();
 
 const ERC20Balances = () => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <button onClick={() => fetchERC20Balances({ params: { chain: "0x1" } })}>
-        Refetch
-      </button>
+      <button onClick={() => fetchERC20Balances({ params: { chain: "0x1" } })}>Refetch</button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
@@ -396,16 +389,13 @@ const ERC20Balances = () => {
 ```jsx
 import { useERC20Transfers } from "react-moralis";
 
-const { fetchERC20Transfers, data, error, isLoading, isFetching } =
-  useERC20Transfers();
+const { fetchERC20Transfers, data, error, isLoading, isFetching } = useERC20Transfers();
 
 const ERC20Transfers = () => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <button onClick={() => fetchERC20Transfers({ params: { chain: "0x1" } })}>
-        Refetch
-      </button>
+      <button onClick={() => fetchERC20Transfers({ params: { chain: "0x1" } })}>Refetch</button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
@@ -508,11 +498,7 @@ const NativeTransactions = () => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <button
-        onClick={() => getNativeTransations({ params: { chain: "0x1" } })}
-      >
-        Refetch
-      </button>
+      <button onClick={() => getNativeTransations({ params: { chain: "0x1" } })}>Refetch</button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
@@ -629,9 +615,7 @@ const NFTTransfers = () => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <button onClick={() => fetch({ params: { chain: "0x1" } })}>
-        Refetch
-      </button>
+      <button onClick={() => fetch({ params: { chain: "0x1" } })}>Refetch</button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
@@ -713,11 +697,7 @@ const TokenPrice = () => {
   return (
     <div>
       {error && <>{JSON.stringify(error)}</>}
-      <button
-        onClick={() =>
-          fetchTokenPrice({ params: { address: "0x6...361", chain: "bsc" } })
-        }
-      >
+      <button onClick={() => fetchTokenPrice({ params: { address: "0x6...361", chain: "bsc" } })}>
         Refetch
       </button>
       <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -811,8 +791,9 @@ function Swap() {
 import { useOneInchQuote } from "react-moralis";
 
 const SupportedTokens = () => {
-  const { getSupportedTokens, data, isFetching, isLoading, error } =
-    useOneInchTokens({ chain: "bsc" });
+  const { getSupportedTokens, data, isFetching, isLoading, error } = useOneInchTokens({
+    chain: "bsc",
+  });
 
   return (
     <div>

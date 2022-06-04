@@ -50,8 +50,7 @@ const getChainIdByName = (chainName) => {
   }
 };
 
-const IsNative = (address) =>
-  address === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+const IsNative = (address) => address === "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 
 function DEX({ chain, customTokens = {} }) {
   const { trySwap, tokenList, getQuote } = useInchDex(chain);
@@ -73,17 +72,12 @@ function DEX({ chain, customTokens = {} }) {
 
   const fromTokenPriceUsd = useMemo(
     () =>
-      tokenPricesUSD?.[fromToken?.["address"]]
-        ? tokenPricesUSD[fromToken?.["address"]]
-        : null,
+      tokenPricesUSD?.[fromToken?.["address"]] ? tokenPricesUSD[fromToken?.["address"]] : null,
     [tokenPricesUSD, fromToken],
   );
 
   const toTokenPriceUsd = useMemo(
-    () =>
-      tokenPricesUSD?.[toToken?.["address"]]
-        ? tokenPricesUSD[toToken?.["address"]]
-        : null,
+    () => (tokenPricesUSD?.[toToken?.["address"]] ? tokenPricesUSD[toToken?.["address"]] : null),
     [tokenPricesUSD, toToken],
   );
 
@@ -95,8 +89,7 @@ function DEX({ chain, customTokens = {} }) {
   const toTokenAmountUsd = useMemo(() => {
     if (!toTokenPriceUsd || !quote) return null;
     return `~$ ${(
-      Moralis?.Units?.FromWei(quote?.toTokenAmount, quote?.toToken?.decimals) *
-      toTokenPriceUsd
+      Moralis?.Units?.FromWei(quote?.toTokenAmount, quote?.toToken?.decimals) * toTokenPriceUsd
     ).toFixed(4)}`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toTokenPriceUsd, quote]);
@@ -142,8 +135,7 @@ function DEX({ chain, customTokens = {} }) {
   }, [tokens, fromToken]);
 
   const ButtonState = useMemo(() => {
-    if (chainIds?.[chainId] !== chain)
-      return { isActive: false, text: `Switch to ${chain}` };
+    if (chainIds?.[chainId] !== chain) return { isActive: false, text: `Switch to ${chain}` };
 
     if (!fromAmount) return { isActive: false, text: "Enter an amount" };
     if (fromAmount && currentTrade) return { isActive: true, text: "Swap" };
@@ -185,15 +177,8 @@ function DEX({ chain, customTokens = {} }) {
   return (
     <>
       <Card style={styles.card} bodyStyle={{ padding: "18px" }}>
-        <Card
-          style={{ borderRadius: "1rem" }}
-          bodyStyle={{ padding: "0.8rem" }}
-        >
-          <div
-            style={{ marginBottom: "5px", fontSize: "14px", color: "#434343" }}
-          >
-            From
-          </div>
+        <Card style={{ borderRadius: "1rem" }} bodyStyle={{ padding: "0.8rem" }}>
+          <div style={{ marginBottom: "5px", fontSize: "14px", color: "#434343" }}>From</div>
           <div
             style={{
               display: "flex",
@@ -208,9 +193,7 @@ function DEX({ chain, customTokens = {} }) {
                 onChange={setFromAmount}
                 value={fromAmount}
               />
-              <Text style={{ fontWeight: "600", color: "#434343" }}>
-                {fromTokenAmountUsd}
-              </Text>
+              <Text style={{ fontWeight: "600", color: "#434343" }}>{fromTokenAmountUsd}</Text>
             </div>
             <Button
               style={{
@@ -229,10 +212,7 @@ function DEX({ chain, customTokens = {} }) {
             >
               {fromToken ? (
                 <Image
-                  src={
-                    fromToken?.logoURI ||
-                    "https://etherscan.io/images/main/empty-token.png"
-                  }
+                  src={fromToken?.logoURI || "https://etherscan.io/images/main/empty-token.png"}
                   alt="nologo"
                   width="30px"
                   preview={false}
@@ -246,20 +226,11 @@ function DEX({ chain, customTokens = {} }) {
             </Button>
           </div>
         </Card>
-        <div
-          style={{ display: "flex", justifyContent: "center", padding: "10px" }}
-        >
+        <div style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
           <ArrowDownOutlined />
         </div>
-        <Card
-          style={{ borderRadius: "1rem" }}
-          bodyStyle={{ padding: "0.8rem" }}
-        >
-          <div
-            style={{ marginBottom: "5px", fontSize: "14px", color: "#434343" }}
-          >
-            To
-          </div>
+        <Card style={{ borderRadius: "1rem" }} bodyStyle={{ padding: "0.8rem" }}>
+          <div style={{ marginBottom: "5px", fontSize: "14px", color: "#434343" }}>To</div>
           <div
             style={{
               display: "flex",
@@ -275,17 +246,12 @@ function DEX({ chain, customTokens = {} }) {
                 value={
                   quote
                     ? parseFloat(
-                        Moralis?.Units?.FromWei(
-                          quote?.toTokenAmount,
-                          quote?.toToken?.decimals,
-                        ),
+                        Moralis?.Units?.FromWei(quote?.toTokenAmount, quote?.toToken?.decimals),
                       ).toFixed(6)
                     : ""
                 }
               />
-              <Text style={{ fontWeight: "600", color: "#434343" }}>
-                {toTokenAmountUsd}
-              </Text>
+              <Text style={{ fontWeight: "600", color: "#434343" }}>{toTokenAmountUsd}</Text>
             </div>
             <Button
               style={{
@@ -305,10 +271,7 @@ function DEX({ chain, customTokens = {} }) {
             >
               {toToken ? (
                 <Image
-                  src={
-                    toToken?.logoURI ||
-                    "https://etherscan.io/images/main/empty-token.png"
-                  }
+                  src={toToken?.logoURI || "https://etherscan.io/images/main/empty-token.png"}
                   alt="nologo"
                   width="30px"
                   preview={false}

@@ -99,9 +99,7 @@ function AddressInput(props) {
       suffix={validatedAddress && <Cross />}
       autoFocus={props.autoFocus}
       value={
-        isDomain
-          ? `${address} (${getEllipsisTxt(validatedAddress)})`
-          : validatedAddress || address
+        isDomain ? `${address} (${getEllipsisTxt(validatedAddress)})` : validatedAddress || address
       }
       onChange={(e) => {
         updateAddress(e.target.value);

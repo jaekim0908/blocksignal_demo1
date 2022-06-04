@@ -33,10 +33,7 @@ export default function AssetSelector({ setAsset, style }) {
         fullBalance.map((item) => {
           console.log(item);
           return (
-            <Select.Option
-              value={item["token_address"]}
-              key={item["token_address"]}
-            >
+            <Select.Option value={item["token_address"]} key={item["token_address"]}>
               <div
                 style={{
                   display: "flex",
@@ -46,10 +43,7 @@ export default function AssetSelector({ setAsset, style }) {
                 }}
               >
                 <Image
-                  src={
-                    item.logo ||
-                    "https://etherscan.io/images/main/empty-token.png"
-                  }
+                  src={item.logo || "https://etherscan.io/images/main/empty-token.png"}
                   alt="nologo"
                   width="24px"
                   height="24px"
@@ -65,11 +59,7 @@ export default function AssetSelector({ setAsset, style }) {
                 >
                   <p>{item.symbol}</p>
                   <p style={{ alignSelf: "right" }}>
-                    (
-                    {parseFloat(
-                      Moralis?.Units?.FromWei(item.balance, item.decimals),
-                    )?.toFixed(6)}
-                    )
+                    ({parseFloat(Moralis?.Units?.FromWei(item.balance, item.decimals))?.toFixed(6)})
                   </p>
                 </div>
               </div>

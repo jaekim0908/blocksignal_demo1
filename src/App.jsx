@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Account from "components/Account/Account";
 import Chains from "components/Chains";
 import TokenPrice from "components/TokenPrice";
@@ -18,11 +13,14 @@ import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
-import QuickStart from "components/QuickStart";
+//import QuickStart from "components/QuickStart";
 import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems";
+import News from "./components/News";
+import SocialChat from "./components/Chat/SocialChat";
+
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -55,9 +53,9 @@ const styles = {
     fontWeight: "600",
   },
 };
-const App = ({ isServerInfo }) => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
-    useMoralis();
+// const App = ({ isServerInfo }) => {
+const App = () => {
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
 
   useEffect(() => {
     const connectorId = window.localStorage.getItem("connectorId");
@@ -66,6 +64,25 @@ const App = ({ isServerInfo }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isWeb3Enabled]);
 
+  if (!isAuthenticated) {
+    return (
+      <Layout style={{ height: "100vh", overflow: "auto" }}>
+        <Router>
+          <Header style={styles.header}>
+            <Logo />
+            <MenuItems />
+            <div style={styles.headerRight}>
+              <Chains />
+              <Account />
+            </div>
+          </Header>
+          <div style={styles.content}>
+            <h1> Please login using the "Authenticate" button </h1>
+          </div>
+        </Router>
+      </Layout>
+    );
+  }
   return (
     <Layout style={{ height: "100vh", overflow: "auto" }}>
       <Router>
@@ -87,8 +104,14 @@ const App = ({ isServerInfo }) => {
 
         <div style={styles.content}>
           <Switch>
-            <Route exact path="/quickstart">
+            {/* <Route exact path="/quickstart">
               <QuickStart isServerInfo={isServerInfo} />
+            </Route> */}
+            <Route path="/news">
+              <News />
+            </Route>
+            <Route path="/chat">
+              <SocialChat />
             </Route>
             <Route path="/wallet">
               <Wallet />
@@ -122,10 +145,10 @@ const App = ({ isServerInfo }) => {
               <Contract />
             </Route>
             <Route path="/">
-              <Redirect to="/quickstart" />
+              <Redirect to="/news" />
             </Route>
             <Route path="/ethereum-boilerplate">
-              <Redirect to="/quickstart" />
+              <Redirect to="/news" />
             </Route>
             <Route path="/nonauthenticated">
               <>Please login using the "Authenticate" button</>
@@ -174,14 +197,8 @@ const App = ({ isServerInfo }) => {
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <svg
-      width="60"
-      height="38"
-      viewBox="0 0 50 38"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
+    <svg width="60" height="38" viewBox="0 0 50 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* <path
         d="M43.6871 32.3986C43.5973 32.4884 43.53 32.5782 43.4402 32.6905C43.53 32.6007 43.5973 32.5109 43.6871 32.3986Z"
         fill="black"
       />
@@ -192,7 +209,7 @@ export const Logo = () => (
       <path
         d="M39.7135 25.1249C37.1094 25.1025 34.9991 27.2127 34.9766 29.8169C34.9542 32.4211 37.0645 34.5313 39.6686 34.5538C41.1503 34.5538 42.5647 33.8578 43.4626 32.6905C43.53 32.6007 43.5973 32.4884 43.6871 32.3986C45.1015 30.221 44.4729 27.3025 42.2953 25.9107C41.532 25.3943 40.634 25.1249 39.7135 25.1249Z"
         fill="#B7E803"
-      />
+      /> */}
     </svg>
   </div>
 );

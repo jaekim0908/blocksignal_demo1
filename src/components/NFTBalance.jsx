@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useMoralis, useNFTBalances } from "react-moralis";
 import { Card, Image, Tooltip, Modal, Input, Skeleton } from "antd";
-import {
-  FileSearchOutlined,
-  SendOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
+import { FileSearchOutlined, SendOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
 import AddressInput from "./AddressInput";
 import { useVerifyMetadata } from "hooks/useVerifyMetadata";
@@ -87,9 +83,7 @@ function NFTBalance() {
                       <FileSearchOutlined
                         onClick={() =>
                           window.open(
-                            `${getExplorer(chainId)}address/${
-                              nft.token_address
-                            }`,
+                            `${getExplorer(chainId)}address/${nft.token_address}`,
                             "_blank",
                           )
                         }
@@ -99,9 +93,7 @@ function NFTBalance() {
                       <SendOutlined onClick={() => handleTransferClick(nft)} />
                     </Tooltip>,
                     <Tooltip title="Sell On OpenSea">
-                      <ShoppingCartOutlined
-                        onClick={() => alert("OPENSEA INTEGRATION COMING!")}
-                      />
+                      <ShoppingCartOutlined onClick={() => alert("OPENSEA INTEGRATION COMING!")} />
                     </Tooltip>,
                   ]}
                   style={{ width: 240, border: "2px solid #e7eaf3" }}
@@ -132,10 +124,7 @@ function NFTBalance() {
       >
         <AddressInput autoFocus placeholder="Receiver" onChange={setReceiver} />
         {nftToSend && nftToSend.contract_type === "erc1155" && (
-          <Input
-            placeholder="amount to send"
-            onChange={(e) => handleChange(e)}
-          />
+          <Input placeholder="amount to send" onChange={(e) => handleChange(e)} />
         )}
       </Modal>
     </div>
